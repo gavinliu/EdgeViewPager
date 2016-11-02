@@ -1,5 +1,6 @@
 package cn.gavinliu.edgeviewpager;
 
+import android.graphics.Path;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import cn.gavinliu.android.lib.shapedimageview.ShapedImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(new MyAdapter());
         mViewPager.setOffscreenPageLimit(3);
         mViewPager.setCurrentItem(1);
+        mViewPager.setPageMargin(30);
     }
 
     int[] colors = {0xFF795548, 0xFF212121, 0xFFFFC107, 0xFF4CAF50, 0xFF8BC34A, 0xFF448AFF,
@@ -31,13 +35,17 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.item_pager, null);
-            view.setBackgroundColor(colors[position]);
             view.setTag(position);
+            container.addView(view);
 
             TextView textView = (TextView) view.findViewById(R.id.textView);
             textView.setText(String.valueOf(position));
 
-            container.addView(view);
+            ShapedImageView cover = (ShapedImageView) view.findViewById(R.id.cover);
+            cover.setExtension(new TicketPathExtension(false));
+            ShapedImageView ticketBg = (ShapedImageView) view.findViewById(R.id.ticket_bg);
+            ticketBg.setExtension(new TicketPathExtension(true));
+
             return view;
         }
 
@@ -54,6 +62,37 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean isViewFromObject(View view, Object object) {
             return view == object;
+        }
+    }
+
+    class TicketPathExtension implements ShapedImageView.PathExtension {
+
+        private boolean isTop;
+
+        public TicketPathExtension(boolean isTop) {
+            this.isTop = isTop;
+        }
+
+        @Override
+        public void onLayout(Path path, int width, int height) {
+            int y = height;
+            if (isTop) {
+                y = 0;
+            }
+
+            int circle_big_r = getResources().getDimensionPixelSize(R.dimen.big_circle_r);
+            int circle_big_offset = getResources().getDimensionPixelSize(R.dimen.big_circle_offset);
+
+            int circle_small_r = getResources().getDimensionPixelSize(R.dimen.small_circle_r);
+            int circle_small_offset = getResources().getDimensionPixelSize(R.dimen.small_circle_offset);
+            int circle_small_spacing = getResources().getDimensionPixelSize(R.dimen.small_circle_spacing);
+
+            path.reset();
+            path.addCircle(0 - circle_big_offset, y, circle_big_r, Path.Direction.CW);
+            path.addCircle(width + circle_big_offset, y, circle_big_r, Path.Direction.CW);
+            for (int i = circle_small_offset; i < width - circle_small_offset; i += circle_small_spacing) {
+                path.addCircle(i, y, circle_small_r, Path.Direction.CW);
+            }
         }
     }
 
