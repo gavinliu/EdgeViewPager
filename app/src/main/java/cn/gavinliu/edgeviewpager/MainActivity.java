@@ -1,30 +1,27 @@
 package cn.gavinliu.edgeviewpager;
 
 import android.graphics.Path;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import cn.gavinliu.android.lib.edgeviewpager.EdgeViewPager;
 import cn.gavinliu.android.lib.shapedimageview.ShapedImageView;
 
 public class MainActivity extends AppCompatActivity {
-
-    private EdgeViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mViewPager = (EdgeViewPager) findViewById(R.id.view_pager);
+        EdgeViewPager mViewPager = (EdgeViewPager) findViewById(R.id.view_pager);
         mViewPager.setAdapter(new MyAdapter());
-        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setCurrentItem(1);
-        mViewPager.setPageMargin(30);
     }
 
     int[] colors = {0xFF795548, 0xFF212121, 0xFFFFC107, 0xFF4CAF50, 0xFF8BC34A, 0xFF448AFF,

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <cn.gavinliu.android.lib.shapedimageview.ShapedImageView
+        android:id="@+id/cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ticket"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/an"
+        app:round_radius="8dp"
+        app:shape_mode="round_rect"/>
+
+    <RelativeLayout
+        android:id="@+id/ticket"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/content_height"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <cn.gavinliu.android.lib.shapedimageview.ShapedImageView
+            android:id="@+id/ticket_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@android:color/white"
+            app:round_radius="8dp"
+            app:shape_mode="round_rect"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:textColor="#000000"
+            android:textSize="32sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

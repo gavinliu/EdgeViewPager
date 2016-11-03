@@ -3,7 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="content_height">150dp</dimen>
+    <dimen name="content_height">128dp</dimen>
 
     <dimen name="big_circle_offset">3dp</dimen>
     <dimen name="big_circle_r">10dp</dimen>

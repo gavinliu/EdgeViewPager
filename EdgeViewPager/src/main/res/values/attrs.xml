@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="EdgeViewPager">
+
+        <attr name="edge_percent" format="fraction"/>
+        <attr name="edge_margin" format="dimension"/>
+        <attr name="content_height" format="dimension"/>
+
+    </declare-styleable>
+
+</resources>
