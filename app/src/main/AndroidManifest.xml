@@ -17,6 +17,20 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".DemoActivity"/>
+
+        <activity android:name=".ScalePercentDemoActivity"/>
+
+        <activity android:name=".ScalePercentDemoActivity2"/>
+
+        <activity android:name=".ScalePercentDemoActivity3"/>
+
+        <activity android:name=".ScalePercentDemoActivity4"/>
+
+        <activity android:name=".TicketDemoActivity"
+                  android:theme="@style/AppTheme.Translucent"/>
+
     </application>
 
 </manifest>

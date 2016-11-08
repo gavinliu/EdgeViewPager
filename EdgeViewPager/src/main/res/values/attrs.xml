@@ -5,6 +5,8 @@
 
         <attr name="edge_percent" format="fraction"/>
         <attr name="edge_margin" format="dimension"/>
+        <attr name="edge_page_margin" format="dimension"/>
+
         <attr name="content_height" format="dimension"/>
 
     </declare-styleable>

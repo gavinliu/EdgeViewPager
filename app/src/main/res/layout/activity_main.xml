@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BDBDBD"
-    android:paddingBottom="30dp"
-    android:paddingTop="70dp"
+    android:orientation="vertical"
     tools:context="cn.gavinliu.edgeviewpager.MainActivity">
 
-    <cn.gavinliu.android.lib.edgeviewpager.EdgeViewPager
-        android:id="@+id/view_pager"
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingLeft="36dp"
-        android:paddingRight="36dp"
-        app:content_height="@dimen/content_height"
-        app:edge_margin="16dp"
-        app:edge_percent="90%"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:onClick="demo"
+        android:text="Demo"/>
 
-</RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:onClick="percent"
+        android:text="Scale Percent Demo"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:onClick="percent2"
+        android:text="Scale Percent Demo 2"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:onClick="percent3"
+        android:text="Scale Percent Demo 3"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:onClick="percent4"
+        android:text="Scale Percent Demo 4"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:onClick="ticket"
+        android:text="TicketDemo"/>
+
+</LinearLayout>

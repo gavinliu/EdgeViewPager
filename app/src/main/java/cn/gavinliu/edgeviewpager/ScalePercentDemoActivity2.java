@@ -7,21 +7,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import cn.gavinliu.android.lib.edgeviewpager.EdgeViewPager;
-import cn.gavinliu.android.lib.shapedimageview.ShapedImageView;
 
 /**
  * Created by Gavin on 16-11-3.
  */
 
-public class DemoActivity extends AppCompatActivity {
+public class ScalePercentDemoActivity2 extends AppCompatActivity {
+
+    public int getContentViewId() {
+        return R.layout.activity_demo_percent;
+    }
+
+    public int getPageItemLayoutId() {
+        return R.layout.item_pager;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo);
+        setContentView(getContentViewId());
 
         EdgeViewPager mViewPager = (EdgeViewPager) findViewById(R.id.view_pager);
         mViewPager.setAdapter(new MyAdapter());
@@ -29,17 +35,18 @@ public class DemoActivity extends AppCompatActivity {
     }
 
     int[] colors = {0xFF795548, 0xFF212121, 0xFFFFC107, 0xFF4CAF50, 0xFF8BC34A, 0xFF448AFF,
-            0xFFFF5252, 0xFFC2185B, 0xFF009688, 0xFFFFC107, 0XFF757575};
+            0xFFFF5252, 0xFFC2185B, 0xFF009688, 0xFFFFC107};
 
     class MyAdapter extends PagerAdapter {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.item_pager, null);
+            View view = LayoutInflater.from(getApplicationContext()).inflate(getPageItemLayoutId(), null);
             view.setTag(position);
             container.addView(view);
 
-            view.setBackgroundColor(colors[position]);
+            view.findViewById(R.id.view1).setBackgroundColor(colors[position]);
+            view.findViewById(R.id.view2).setBackgroundColor(colors[getCount() - position - 1]);
 
             return view;
         }

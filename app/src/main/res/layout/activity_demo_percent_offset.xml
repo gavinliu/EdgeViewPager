@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BDBDBD"
-    android:paddingBottom="30dp"
-    android:paddingTop="70dp"
-    tools:context="cn.gavinliu.edgeviewpager.MainActivity">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_horizontal_margin">
 
     <cn.gavinliu.android.lib.edgeviewpager.EdgeViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:content_height="@dimen/content_height"
-        app:edge_margin="36dp"
-        app:edge_page_margin="16dp"
+        app:edge_margin="32dp"
+        app:edge_page_margin="14dp"
         app:edge_percent="90%"/>
 
-</RelativeLayout>
+</FrameLayout>

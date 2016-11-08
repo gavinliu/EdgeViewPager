@@ -12,9 +12,12 @@ import android.view.View;
  */
 public class EdgeViewPager extends ViewPager {
 
-    private int mContentHeight;
-    private float mEdgePercent;
     private int mEdgeMargin;
+    private int mEdgePageMargin;
+
+    private float mEdgePercent;
+
+    private int mContentHeight;
 
     public EdgeViewPager(Context context) {
         this(context, null);
@@ -23,19 +26,27 @@ public class EdgeViewPager extends ViewPager {
     public EdgeViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
-        setPageTransformer(true, new MyPageTransformer());
     }
 
     private void init(AttributeSet attrs) {
         if (attrs != null) {
             TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.EdgeViewPager);
-            mEdgePercent = array.getFraction(R.styleable.EdgeViewPager_edge_percent, 1, 1, 0);
             mEdgeMargin = array.getDimensionPixelSize(R.styleable.EdgeViewPager_edge_margin, 0);
+            mEdgePageMargin = array.getDimensionPixelSize(R.styleable.EdgeViewPager_edge_page_margin, 0);
+
+            mEdgePercent = array.getFraction(R.styleable.EdgeViewPager_edge_percent, 1, 1, 0);
+
             mContentHeight = array.getDimensionPixelSize(R.styleable.EdgeViewPager_content_height, 0);
             array.recycle();
         }
-        setPageMargin(mEdgeMargin);
+        setClipToPadding(false);
         setOffscreenPageLimit(3);
+        setPageMargin(mEdgePageMargin);
+        setPadding(mEdgeMargin, 0, mEdgeMargin, 0);
+
+        if (mEdgePercent > 0) {
+            setPageTransformer(true, new EdgePageTransformer());
+        }
     }
 
     private int getClientWidth() {
@@ -46,17 +57,23 @@ public class EdgeViewPager extends ViewPager {
         return getMeasuredHeight() - getPaddingTop() - getPaddingBottom();
     }
 
-    class MyPageTransformer implements PageTransformer {
+    class EdgePageTransformer implements PageTransformer {
 
         @Override
         public void transformPage(View page, float position) {
             float transformPos = (float) (page.getLeft() - getPaddingLeft() - getScrollX()) / getClientWidth();
-            Log.d("MyPageTransformer", page.getTag() + ": transformPos:" + transformPos + " position:" + position);
+            if (BuildConfig.DEBUG) {
+                Log.d("EdgePageTransformer", page.getTag() + ": transformPos:" + transformPos + " position:" + position);
+            }
 
             int height = getClientHeight();
             float scaledH = height * mEdgePercent;
-            float scaledCH = mContentHeight * mEdgePercent;
-            float heightOffset = (height - scaledH) / 2 + scaledCH - mContentHeight;
+
+            float heightOffset = 0;
+            if (mContentHeight != 0) {
+                float scaledCH = mContentHeight * mEdgePercent;
+                heightOffset = (height - scaledH) / 2 + scaledCH - mContentHeight;
+            }
 
             if (transformPos <= 1f || transformPos >= -1f) {
                 float offset = Math.abs(transformPos);
