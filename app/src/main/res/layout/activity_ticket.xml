@@ -3,11 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#BDBDBD"
-    android:paddingBottom="30dp"
-    android:paddingTop="70dp"
+    android:paddingBottom="32dp"
+    android:paddingTop="68dp"
     tools:context="cn.gavinliu.edgeviewpager.MainActivity">
 
     <cn.gavinliu.android.lib.edgeviewpager.EdgeViewPager
