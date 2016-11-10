@@ -4,7 +4,7 @@ package cn.gavinliu.edgeviewpager;
  * Created by Gavin on 16-11-3.
  */
 
-public class ScalePercentDemoActivity4 extends ScalePercentDemoActivity2 {
+public class ScalePercentDemoActivity4 extends DemoActivity {
 
     @Override
     public int getContentViewId() {
@@ -13,6 +13,6 @@ public class ScalePercentDemoActivity4 extends ScalePercentDemoActivity2 {
 
     @Override
     public int getPageItemLayoutId() {
-        return R.layout.item_pager_offset;
+        return R.layout.item_pager_percent_offset;
     }
 }
